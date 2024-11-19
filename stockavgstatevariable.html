@@ -1,0 +1,99 @@
+<script
+  src="https://unpkg.com/react@18/umd/react.development.js"
+  crossorigin
+></script>
+<script
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  crossorigin
+></script>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+  crossorigin="anonymous"
+/>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+   
+   function Stock(){
+
+    var [data1, unitvalue1] = React.useState(0);
+    var [data2, pricevalue1] = React.useState(0);
+    var [data3, unitvalue2] = React.useState(0);
+    var [data4, pricevalue2] = React.useState(0);
+    var [data5, ans1] = React.useState(0);
+    var [data6, ans2] = React.useState(0);
+    var [data7, average] = React.useState(0);
+
+    function f1(){
+        var funit = +data1;
+        var fprice = +data2;
+        var sunit = +data3;
+        var sprice = +data4;
+
+        var answer1 = funit*fprice;
+        var answer2 = sunit*sprice;
+
+        ans1(answer1);
+        ans2(answer2);
+
+        var totalunit = funit + sunit;
+        var totalamount = answer1 + answer2;
+
+        var totalaverage = totalamount/totalunit;
+        average(totalaverage);
+
+
+    }
+
+    function f2(ev){
+        unitvalue1(ev.target.value)
+
+    }
+    function f3(ev){
+        pricevalue1(ev.target.value)
+
+    }
+    function f4(ev){
+        unitvalue2(ev.target.value)
+
+    }
+    function f5(ev){
+        pricevalue2(ev.target.value)
+
+    }
+
+
+    return (
+      <div class="container">
+
+        <h1>stock average caculator</h1>
+        <h2>First Purchase</h2>
+        <input type="text" onChange={f2} placeholder = "Enter Units" />
+        <br />
+        <input type="text" onChange={f3} placeholder = "Enter Price " />
+        <br />
+        <p>Answer1: {data5}</p>
+        <hr/>
+        <h2>Second Purchase</h2>
+        <input type="text" onChange={f4} placeholder = "Enter Units" />
+        <br />
+        <input type="text" onChange={f5} placeholder = "Enter Price" />
+        <br />
+        
+        <br/>                 
+        <p>Answer2: {data6}</p>
+        <hr/>
+        <button onClick={f1}>Enter</button> <br/>
+        
+        <p> Average Price: {data7}₹</p>
+      </div>
+    );
+   }
+   ReactDOM.render(<Stock />, document.getElementById("root"));
+
+</script>
