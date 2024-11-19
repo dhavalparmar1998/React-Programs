@@ -1,0 +1,27 @@
+<!-- Real Dom Rendering -->
+<!-- virtual Dom Rendering -->
+
+<div id="root">
+  <script>
+    setInterval(() => {
+      var no = Math.random();
+      var record = `
+            
+<div>
+    <div>
+        <h1>
+            Hello
+            <span>${no}</span>
+        </h1>
+    </div>
+</div>
+            
+            `;
+            document.getElementById("root").innerHTML = record;
+    }, 1000);
+
+
+
+
+  </script>
+</div>

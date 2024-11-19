@@ -1,0 +1,70 @@
+<script
+  src="https://unpkg.com/react@18/umd/react.development.js"
+  crossorigin
+></script>
+<script
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  crossorigin
+></script>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+  crossorigin="anonymous"
+/>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+    function Content(props){
+        // var [data] = React.useState({name:"Dhaval",age:26});
+        var [data, setdata] = React.useState();
+        var [api, setapi] = React.useState([]);
+
+        function callapi(){
+            console.log(data);
+            // console.log(data2);
+            if(data!=""){
+                var apipath = `https://fakestoreapi.com/products/category/${data}`;
+                console.log(apipath);
+                fetch(apipath)
+            .then(res=>res.json())
+            .then(json=>{
+                console.log(json)
+                setapi(json);
+            })
+            }
+        }
+
+    
+
+        return(
+            <div class="container">
+    <h1>Api Call</h1>
+    <div>
+        <input type="text" onChange={(e)=>{setdata(e.target.value)}} />
+        <button onClick={callapi}>Fetch</button> {data}
+    </div>
+    <div class="row">
+        {
+            api && api.length>0 && api.map(({price,title})=>
+
+            <div class="col-3 text-center">
+                <h2>{price}</h2>
+                <p>{title}</p>
+            </div>
+
+            )
+        }
+    </div>
+</div>
+      
+          
+        )
+    }
+    ReactDOM.render(<Content />, document.getElementById("root"));
+</script>
+
+
+
